@@ -14,15 +14,15 @@ import {
 } from '@heroicons/react/outline'
 
 const user = {
-  name: 'Debbie Lewis',
-  handle: 'deblewis',
-  email: 'debbielewis@example.com',
+  name: 'The Way Dhaka',
+  handle: 'theway',
+  email: 'theway@example.com',
   imageUrl:
-    'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80',
+    'https://www.thewaydhaka.com/image/gallery/36.jpg',
 }
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
-  { name: 'Jobs', href: '#', current: false },
+  { name: 'Reservations', href: '#', current: false },
   { name: 'Applicants', href: '#', current: false },
   { name: 'Company', href: '#', current: false },
 ]

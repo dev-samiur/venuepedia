@@ -5,7 +5,7 @@ const products = [
   {
     id: 1,
     name: 'International Convention City Bashundhara',
-    price: '$149',
+    price: '$1490',
     rating: 5,
     reviewCount: 38,
     imageSrc: 'https://www.event71.com/file/2019/10/international-convention-center-bashundhara.jpg',
@@ -25,7 +25,7 @@ const products = [
   {
     id: 4,
     name: 'Raowa',
-    price: '$15',
+    price: '$800',
     rating: 4,
     reviewCount: 21,
     imageSrc: 'https://alpha360.co/uploads/vendor_profile_page/list_photo//7a3e6ff10c4caa4ecb4000f08cd8d099.jpg',
@@ -35,7 +35,7 @@ const products = [
 	{
     id: 1,
     name: 'Radisson',
-    price: '$149',
+    price: '$2990',
     rating: 5,
     reviewCount: 38,
     imageSrc: 'https://media.radissonhotels.net/image/radisson-blu-dhaka-water-garden/exteriorview/16256-113891-f63612886_3xl.jpg',
@@ -45,7 +45,7 @@ const products = [
   {
     id: 2,
     name: 'Golf Garden',
-    price: '$15',
+    price: '$2000',
     rating: 5,
     reviewCount: 18,
     imageSrc: 'https://www.goldenmomentevent.com/wp-content/uploads/2020/10/Sena-Malancha-Event-43.jpg',
@@ -55,7 +55,7 @@ const products = [
   {
     id: 3,
     name: 'Sena Malancha',
-    price: '$15',
+    price: '$1900',
     rating: 5,
     reviewCount: 14,
     imageSrc: 'https://www.goldenmomentevent.com/wp-content/uploads/2020/10/Sena-Malancha-Event-36.jpg',
@@ -65,7 +65,7 @@ const products = [
   {
     id: 4,
     name: 'Westin',
-    price: '$15',
+    price: '$1950',
     rating: 4,
     reviewCount: 21,
     imageSrc: 'https://ak-d.tripcdn.com/images/0220w1200084a7aqa129E_Z_550_412_R5_Q70_D.jpg',
@@ -75,7 +75,7 @@ const products = [
 	{
     id: 1,
     name: 'Amari Dhaka',
-    price: '$149',
+    price: '$1409',
     rating: 5,
     reviewCount: 38,
     imageSrc: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/153343146.jpg?k=657a09b8dfe49a6e095f02186d6258c7eaca471025c13810d40c5a2fb937bb61&o=&hp=1',
@@ -85,7 +85,7 @@ const products = [
   {
     id: 2,
     name: 'Six Sessions',
-    price: '$15',
+    price: '$2000',
     rating: 5,
     reviewCount: 18,
     imageSrc: 'https://www.thewaydhaka.com/image/gallery/36.jpg',
@@ -95,7 +95,7 @@ const products = [
   {
     id: 3,
     name: 'The Way',
-    price: '$15',
+    price: '$1500',
     rating: 5,
     reviewCount: 14,
     imageSrc: 'https://www.thewaydhaka.com/image/gallery/3.jpg',
@@ -105,7 +105,7 @@ const products = [
   {
     id: 4,
     name: '4 Points Sheraton',
-    price: '$15',
+    price: '$1900',
     rating: 4,
     reviewCount: 21,
     imageSrc: 'https://www.thewaydhaka.com/image/gallery/9.jpg',
