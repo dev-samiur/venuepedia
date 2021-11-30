@@ -10,9 +10,9 @@ const navigation = [
   { name: 'Company', href: '#' },
 ]
 
-export default function Example() {
+const Hero=  () => {
   return (
-    <div className="relative overflow-hidden w-full">
+    <div className="relative overflow-hidden w-full" style={{marginTop: -10}}>
       <Popover as="header" className="relative">
         <Transition
           as={Fragment}
@@ -152,3 +152,5 @@ export default function Example() {
     </div>
   )
 }
+
+export default Hero

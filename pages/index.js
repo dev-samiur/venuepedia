@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Hero from '../components/Hero'
-import Feature from '../components/Feature'
+import Stats from '../components/Stats'
 
 export default function Home() {
   return (
@@ -10,9 +10,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
+      <main className="flex flex-col items-center justify-center w-full flex-1 px-0 text-center">
         <Hero />
-				<Feature />
+				<Stats />
       </main>
     </div>
   )
