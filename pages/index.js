@@ -4,6 +4,7 @@ import Stats from '../components/Stats'
 import Products from '../components/Products'
 import CTA from '../components/CTA'
 import Contact from '../components/Contact'
+import Category from '../components/Category'
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <main className="flex flex-col items-center justify-center w-full flex-1 px-0 text-center">
         <Hero />
 				<Stats />
+				<Category />
 				<Products />
 				<CTA />
 				<Contact />
