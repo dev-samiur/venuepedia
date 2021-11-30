@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
-import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import { XIcon } from '@heroicons/react/outline'
 import { ChevronRightIcon } from '@heroicons/react/solid'
 
 const navigation = [
@@ -12,7 +12,7 @@ const navigation = [
 
 const Hero=  () => {
   return (
-    <div className="relative overflow-hidden w-full" style={{marginTop: -10}}>
+    <div className="relative overflow-hidden w-full h-screen -mt-5">
       <Popover as="header" className="relative">
         <Transition
           as={Fragment}
@@ -75,7 +75,7 @@ const Hero=  () => {
       </Popover>
 
       <main>
-        <div className="pt-10 bg-gray-900 sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden">
+        <div className="pt-10 bg-gray-900 sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden h-screen">
           <div className="mx-auto max-w-7xl lg:px-8">
             <div className="lg:grid lg:grid-cols-2 lg:gap-8">
               <div className="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0 lg:text-left lg:flex lg:items-center">
