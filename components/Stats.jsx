@@ -2,7 +2,7 @@ import React from 'react'
 
 const Stats = () => {
   return (
-    <div className="bg-indigo-800 w-50 mt-20">
+    <div className="bg-indigo-800 w-100 mt-20">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-extrabold text-white sm:text-4xl">Trusted by developers from over 80 planets</h2>
