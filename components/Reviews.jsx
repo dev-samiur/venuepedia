@@ -16,9 +16,9 @@ const reviews = {
       id: 1,
       rating: 5,
       content: `
-        <p>This is the bag of my dreams. I took it on my last vacation and was able to fit an absurd amount of snacks for the many long and hungry flights.</p>
+        <p>Amazing experience. Recommended</p>
       `,
-      author: 'Emily Selman',
+      author: 'Nadim Farhan',
       avatarSrc:
         'https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80',
     },

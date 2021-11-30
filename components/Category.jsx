@@ -2,26 +2,26 @@ import React from 'react'
 
 const categories = [
   {
-    name: 'New Arrivals',
+    name: 'New on VenueQ',
     href: '#',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-category-01.jpg',
+    imageSrc: 'https://www.donchanpalacelaopdr.com/images/gallery/Hall_B_1.jpg',
   },
   {
-    name: 'Productivity',
+    name: 'Top rated',
     href: '#',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-category-02.jpg',
+    imageSrc: 'https://alpha360.co/uploads/vendor_profile_page/profile_photo//16cf1fe6515805cb9d25d4da147f04e6.jpg',
   },
   {
-    name: 'Workspace',
+    name: 'Hot Deals',
     href: '#',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-category-04.jpg',
+    imageSrc: 'https://i.pinimg.com/originals/1e/3e/9c/1e3e9c0f92b0ec4aa574f8664129023f.jpg',
   },
   {
-    name: 'Accessories',
+    name: 'All',
     href: '#',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-category-05.jpg',
+    imageSrc: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1d/bd/f6/72/kushiara-colonnade.jpg?w=500&h=400&s=1',
   },
-  { name: 'Sale', href: '#', imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-category-03.jpg' },
+  { name: 'Sale', href: '#', imageSrc: 'https://alpha360.co/uploads/vendor_profile_page/profile_photo//61608183b1f6a4d3d4f6109a86949573.jpg' },
 ]
 
 const Category= () => {
@@ -29,7 +29,7 @@ const Category= () => {
     <div className="bg-white mt-20">
       <div className="py-16 sm:py-24 xl:max-w-7xl xl:mx-auto xl:px-8">
         <div className="px-4 sm:px-6 sm:flex sm:items-center sm:justify-between lg:px-8 xl:px-0">
-          <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">Shop by Category</h2>
+          <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">Explore by Category</h2>
           <a href="#" className="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block">
             Browse all categories<span aria-hidden="true"> &rarr;</span>
           </a>

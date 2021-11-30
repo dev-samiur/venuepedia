@@ -16,9 +16,7 @@ const CTA= () => {
           <h2 className="text-base font-semibold uppercase tracking-wider text-gray-300">Award winning support</h2>
           <p className="mt-2 text-white text-3xl font-extrabold tracking-tight sm:text-4xl">We’re here to help</p>
           <p className="mt-3 text-lg text-gray-300">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et, egestas tempus tellus etiam sed. Quam a
-            scelerisque amet ullamcorper eu enim et fermentum, augue. Aliquet amet volutpat quisque ut interdum
-            tincidunt duis.
+            Let us know if you need any kind of supports. We are always ready to helo you out.
           </p>
           <div className="mt-8">
             <div className="inline-flex rounded-md shadow">

@@ -1,10 +1,10 @@
 import React from 'react'
 
 const navigation = [
-  { name: 'Solutions', href: '#' },
-  { name: 'Pricing', href: '#' },
-  { name: 'Docs', href: '#' },
-  { name: 'Company', href: '#' },
+  { name: 'Home', href: '#' },
+  { name: 'About', href: '#' },
+	{ name: 'Venue', href: '#' },
+  { name: 'Contact', href: '#' },
 ]
 
 const Navbar= () => {

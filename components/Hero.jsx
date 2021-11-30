@@ -1,16 +1,16 @@
-import { Fragment } from 'react'
-import { Popover, Transition } from '@headlessui/react'
-import { XIcon } from '@heroicons/react/outline'
-import { ChevronRightIcon } from '@heroicons/react/solid'
+import { Fragment } from 'react';
+import { Popover, Transition } from '@headlessui/react';
+import { XIcon } from '@heroicons/react/outline';
+import { ChevronRightIcon } from '@heroicons/react/solid';
 
 const navigation = [
   { name: 'Product', href: '#' },
   { name: 'Features', href: '#' },
   { name: 'Marketplace', href: '#' },
   { name: 'Company', href: '#' },
-]
+];
 
-const Hero=  () => {
+const Hero = () => {
   return (
     <div className="relative overflow-hidden w-full h-screen -mt-5">
       <Popover as="header" className="relative">
@@ -23,7 +23,10 @@ const Hero=  () => {
           leaveFrom="opacity-100 scale-100"
           leaveTo="opacity-0 scale-95"
         >
-          <Popover.Panel focus className="absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top md:hidden">
+          <Popover.Panel
+            focus
+            className="absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top md:hidden"
+          >
             <div className="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
               <div className="px-5 pt-4 flex items-center justify-between">
                 <div>
@@ -80,23 +83,13 @@ const Hero=  () => {
             <div className="lg:grid lg:grid-cols-2 lg:gap-8">
               <div className="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0 lg:text-left lg:flex lg:items-center">
                 <div className="lg:py-24">
-                  <a
-                    href="#"
-                    className="inline-flex items-center text-white bg-black rounded-full p-1 pr-2 sm:text-base lg:text-sm xl:text-base hover:text-gray-200"
-                  >
-                    <span className="px-3 py-0.5 text-white text-xs font-semibold leading-5 uppercase tracking-wide bg-indigo-500 rounded-full">
-                      We're hiring
-                    </span>
-                    <span className="ml-4 text-sm">Visit our careers page</span>
-                    <ChevronRightIcon className="ml-2 w-5 h-5 text-gray-500" aria-hidden="true" />
-                  </a>
                   <h1 className="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
-                    <span className="block">A better way to</span>
-                    <span className="block text-indigo-400">ship web apps</span>
+                    <span className="block">Explore and Execute</span>
+                    <span className="block text-indigo-400">your dream ceremony</span>
                   </h1>
                   <p className="mt-3 text-base text-gray-300 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                    Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui Lorem cupidatat commodo. Elit sunt
-                    amet fugiat veniam occaecat fugiat.
+                    VenueQ is the ultimate online platform for next
+                    generation event execution!
                   </p>
                   <div className="mt-10 sm:mt-12">
                     <form action="#" className="sm:max-w-xl sm:mx-auto lg:mx-0">
@@ -117,18 +110,10 @@ const Hero=  () => {
                             type="submit"
                             className="block w-full py-3 px-4 rounded-md shadow bg-indigo-500 text-white font-medium hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300 focus:ring-offset-gray-900"
                           >
-                            Start free trial
+                            Send us Email
                           </button>
                         </div>
                       </div>
-                      <p className="mt-3 text-sm text-gray-300 sm:mt-4">
-                        Start your free 14-day trial, no credit card necessary. By providing your email, you agree to
-                        our{' '}
-                        <a href="#" className="font-medium text-white">
-                          terms of service
-                        </a>
-                        .
-                      </p>
                     </form>
                   </div>
                 </div>
@@ -150,7 +135,7 @@ const Hero=  () => {
         {/* More main page content here... */}
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

@@ -109,8 +109,7 @@ const Contact= () => {
               </div>
               <h3 className="text-lg font-medium text-white">Contact information</h3>
               <p className="mt-6 text-base text-indigo-50 max-w-3xl">
-                Nullam risus blandit ac aliquam justo ipsum. Quam mauris volutpat massa dictumst amet. Sapien tortor
-                lacus arcu.
+                Want to get in touch? Here's how you can reach us
               </p>
               <dl className="mt-8 space-y-6">
                 <dt>
@@ -118,14 +117,14 @@ const Contact= () => {
                 </dt>
                 <dd className="flex text-base text-indigo-50">
                   <PhoneIcon className="flex-shrink-0 w-6 h-6 text-indigo-200" aria-hidden="true" />
-                  <span className="ml-3">+1 (555) 123-4567</span>
+                  <span className="ml-3">+(880) 12345678</span>
                 </dd>
                 <dt>
                   <span className="sr-only">Email</span>
                 </dt>
                 <dd className="flex text-base text-indigo-50">
                   <MailIcon className="flex-shrink-0 w-6 h-6 text-indigo-200" aria-hidden="true" />
-                  <span className="ml-3">support@workcation.com</span>
+                  <span className="ml-3">support@bevueq.com</span>
                 </dd>
               </dl>
               <ul role="list" className="mt-8 flex space-x-12">
