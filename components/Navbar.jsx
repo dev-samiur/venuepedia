@@ -1,13 +1,27 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import Router from 'next/router';
+import Link from 'next/link';
 
 const navigation = [
   { name: 'Home', href: '#' },
   { name: 'About', href: '#' },
-	{ name: 'Venue', href: '#' },
+  { name: 'Venue', href: '#' },
   { name: 'Contact', href: '#' },
-]
+];
 
-const Navbar= () => {
+const Navbar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem('user')) setIsLoggedIn(true);
+  }, []);
+  const handleSignout = () => {
+    if (localStorage) {
+      localStorage.removeItem('user');
+      Router.push('/signin');
+    }
+  };
+
   return (
     <header className="bg-indigo-600">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
@@ -23,37 +37,55 @@ const Navbar= () => {
             </a>
             <div className="hidden ml-10 space-x-8 lg:block">
               {navigation.map((link) => (
-                <a key={link.name} href={link.href} className="text-base font-medium text-white hover:text-indigo-50">
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="text-base font-medium text-white hover:text-indigo-50"
+                >
                   {link.name}
                 </a>
               ))}
             </div>
           </div>
-          <div className="ml-10 space-x-4">
-            <a
-              href="#"
-              className="inline-block bg-indigo-500 py-2 px-4 border border-transparent rounded-md text-base font-medium text-white hover:bg-opacity-75"
-            >
-              Sign in
-            </a>
+          {!isLoggedIn ? (
+            <div className="ml-10 space-x-4">
+              <Link href="/signin">
+                <span className="cursor-pointer inline-block bg-indigo-500 py-2 px-4 border border-transparent rounded-md text-base font-medium text-white hover:bg-opacity-75">
+                  Sign in
+                </span>
+              </Link>
+              <Link
+                href="/signup"
+              >
+                <span className="cursor-pointer inline-block bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50">
+									Sign up
+								</span>
+              </Link>
+            </div>
+          ) : (
             <a
               href="#"
               className="inline-block bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"
+              onClick={handleSignout}
             >
-              Sign up
+              Sign out
             </a>
-          </div>
+          )}
         </div>
         <div className="py-4 flex flex-wrap justify-center space-x-6 lg:hidden">
           {navigation.map((link) => (
-            <a key={link.name} href={link.href} className="text-base font-medium text-white hover:text-indigo-50">
+            <a
+              key={link.name}
+              href={link.href}
+              className="text-base font-medium text-white hover:text-indigo-50"
+            >
               {link.name}
             </a>
           ))}
         </div>
       </nav>
     </header>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

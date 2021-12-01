@@ -1,6 +1,6 @@
-import { React, useState } from 'react'
-import { RadioGroup } from '@headlessui/react'
-import { CheckCircleIcon, TrashIcon } from '@heroicons/react/solid'
+import { React } from 'react'
+import Router from "next/router";
+import { TrashIcon } from '@heroicons/react/solid'
 
 const products = [
   {
@@ -28,7 +28,10 @@ function classNames(...classes) {
 }
 
 const Checkout = () => {
-  const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState(deliveryMethods[0])
+  const confirmOrder= (e) => {
+		e.preventDefault()
+		Router.push('/signin')
+	}
 
   return (
     <div className="bg-gray-50">
@@ -360,8 +363,8 @@ const Checkout = () => {
 
               <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                 <button
-                  type="submit"
-                  className="w-full bg-indigo-600 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500"
+                  className="w-full text-center bg-indigo-600 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500"
+									onClick={confirmOrder}
                 >
                   Confirm order
                 </button>

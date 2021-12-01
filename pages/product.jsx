@@ -1,8 +1,8 @@
-import { React, useState } from 'react'
+import React from 'react'
 import { StarIcon } from '@heroicons/react/solid'
-import { RadioGroup } from '@headlessui/react'
 import { CurrencyDollarIcon, GlobeIcon } from '@heroicons/react/outline'
 import Reviews from '../components/Reviews'
+import Router from "next/router";
 
 const product = {
   name: 'The Way',
@@ -65,8 +65,10 @@ function classNames(...classes) {
 }
 
 const Product = () => {
-  const [selectedColor, setSelectedColor] = useState(product.colors[0])
-  const [selectedSize, setSelectedSize] = useState(product.sizes[2])
+  const bookVenue= (e) => {
+		e.preventDefault()
+		Router.push('/checkout')
+	}
 
   return (
     <div className="bg-white">
@@ -136,6 +138,7 @@ const Product = () => {
                 <button
                   type="submit"
                   className="mt-8 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+									onClick={bookVenue}
                 >
                   Book the venue
                 </button>
