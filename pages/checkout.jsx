@@ -162,9 +162,7 @@ const Checkout = () => {
                       autoComplete="country-name"
                       className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     >
-                      <option>United States</option>
-                      <option>Canada</option>
-                      <option>Mexico</option>
+                      <option>Bangladesh</option>
                     </select>
                   </div>
                 </div>

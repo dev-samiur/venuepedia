@@ -5,7 +5,7 @@ import Link from 'next/link';
 const navigation = [
   { name: 'Home', href: '#' },
   { name: 'About', href: '#' },
-  { name: 'Venue', href: '#' },
+  { name: 'Venues', href: '#' },
   { name: 'Contact', href: '#' },
 ];
 
@@ -23,7 +23,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="bg-indigo-600">
+    <header className="bg-indigo-600 sticky top-0 z-10">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
         <div className="w-full py-6 flex items-center justify-between border-b border-indigo-500 lg:border-none">
           <div className="flex items-center">

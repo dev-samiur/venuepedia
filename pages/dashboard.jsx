@@ -13,6 +13,7 @@ import {
   XIcon,
 } from '@heroicons/react/outline';
 import Link from 'next/link';
+import Modal from '../components/Modal'
 
 const user = {
   name: 'The Way Dhaka',
@@ -22,8 +23,8 @@ const user = {
 };
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
-  { name: 'Reservations', href: '#', current: false },
-  { name: 'Applicants', href: '#', current: false },
+  { name: 'Add Venue', href: '#', current: false },
+  { name: 'Venues', href: '#', current: false },
   { name: 'Company', href: '#', current: false },
 ];
 const subNavigation = [
@@ -47,6 +48,7 @@ const Dashboard = () => {
   const [privateAccount, setPrivateAccount] = useState(false);
   const [allowCommenting, setAllowCommenting] = useState(true);
   const [allowMentions, setAllowMentions] = useState(true);
+	const [showAddVenueForm, setShowAddVenueForm] = useState(false)
 
   const handleSignout = () => {
     if (localStorage) {
@@ -55,12 +57,17 @@ const Dashboard = () => {
     }
   };
 
-  useEffect(() => {
-    if (!localStorage.getItem('user')) Router.push('/signin');
-  }, []);
+	const handleShowAddVenueForm= (open) => {
+		setShowAddVenueForm(open)
+	}
+
+  // useEffect(() => {
+  //   if (!localStorage.getItem('user')) Router.push('/signin');
+  // }, []);
 
   return (
     <div>
+			<Modal showAddVenueForm={showAddVenueForm} handleShowAddVenueForm={handleShowAddVenueForm} />
       <Disclosure
         as="div"
         className="relative bg-sky-700 pb-32 overflow-hidden"
@@ -95,6 +102,7 @@ const Dashboard = () => {
                                 : 'hover:bg-sky-800',
                               'rounded-md py-2 px-3 text-sm font-medium text-white'
                             )}
+														onClick={item.name === 'Add Venue' ? () => setShowAddVenueForm(true) : null}
                           >
                             {item.name}
                           </a>
