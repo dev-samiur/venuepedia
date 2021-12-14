@@ -1,6 +1,7 @@
 import { React } from 'react';
 import Router from 'next/router';
 import { TrashIcon } from '@heroicons/react/solid';
+import Paypal from '../components/Paypal'
 
 const product = {
   id: 1,
@@ -20,17 +21,10 @@ const Checkout = () => {
   };
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-gray-50 h-screen">
       <div className="max-w-2xl mx-auto pt-16 pb-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="sr-only">Checkout</h2>
-
         <form className="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
-          <div>
-            {/* Payment */}
-            <div className="mt-10 border-t border-gray-200 pt-10">
-              <h2 className="text-lg font-medium text-gray-900">Payment</h2>
-            </div>
-          </div>
 
           {/* Order summary */}
           <div className="mt-10 lg:mt-0">
@@ -99,12 +93,7 @@ const Checkout = () => {
               </dl>
 
               <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
-                <button
-                  className="w-full text-center bg-indigo-600 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500"
-                  onClick={confirmOrder}
-                >
-                  Confirm
-                </button>
+								<Paypal venue="sena kunja" user="sam" date="12 Nov" />
               </div>
             </div>
           </div>
