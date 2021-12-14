@@ -7,8 +7,9 @@ import Products from '../components/Products'
 import CTA from '../components/CTA'
 import Contact from '../components/Contact'
 import Category from '../components/Category'
+import axios from 'axios'
 
-export default function Home() {
+export default function Home({products}) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
@@ -21,10 +22,23 @@ export default function Home() {
 				<About />
 				<Stats />
 				<Category />
-				<Products />
+				<Products products={products}/>
 				<CTA />
 				<Contact />
       </main>
     </div>
   )
+}
+
+export async function getStaticProps({ req, res }) {
+  const result = await axios({
+    url: 'http://localhost:5000/api/venue',
+    method: 'GET',
+  });
+
+  return {
+    props: {
+      products: result.data.success,
+    },
+  };
 }

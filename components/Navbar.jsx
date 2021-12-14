@@ -3,9 +3,9 @@ import Router from 'next/router';
 import Link from 'next/link';
 
 const navigation = [
-  { name: 'Home', href: '#' },
+  { name: 'Home', href: '/' },
   { name: 'About', href: '#' },
-  { name: 'Venues', href: '#' },
+  { name: 'Venues', href: '/' },
   { name: 'Contact', href: '#' },
 ];
 
@@ -37,13 +37,12 @@ const Navbar = () => {
             </a>
             <div className="hidden ml-10 space-x-8 lg:block">
               {navigation.map((link) => (
-                <a
+                <Link
                   key={link.name}
                   href={link.href}
-                  className="text-base font-medium text-white hover:text-indigo-50"
                 >
-                  {link.name}
-                </a>
+                  <span className="text-base font-medium text-white hover:text-indigo-50 cursor-pointer">{link.name}</span>
+                </Link>
               ))}
             </div>
           </div>

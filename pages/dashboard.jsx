@@ -61,9 +61,9 @@ const Dashboard = () => {
 		setShowAddVenueForm(open)
 	}
 
-  // useEffect(() => {
-  //   if (!localStorage.getItem('user')) Router.push('/signin');
-  // }, []);
+  useEffect(() => {
+    if (!localStorage.getItem('user')) Router.push('/signin');
+  }, []);
 
   return (
     <div>

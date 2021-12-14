@@ -1,10 +1,18 @@
 import React, { useEffect } from 'react';
 import { Fragment, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import MediaUpload from './MediaUpload'
+import MediaUpload from './MediaUpload';
+import axios from 'axios';
 
 const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
   const [open, setOpen] = useState(false);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [address, setAddress] = useState('');
+  const [price, setPrice] = useState('');
+  const [capacity, setCapacity] = useState('');
+  const [thumbnail, setThumbnail] = useState('');
+  const [gallery, setGallery] = useState('');
 
   const cancelButtonRef = useRef(null);
 
@@ -17,13 +25,35 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
     handleShowAddVenueForm(false);
   };
 
-	const handleThumbnailUpload= (image) => {
-		console.log(image)
-	}
+  const handleThumbnailUpload = (image) => {
+    setThumbnail(image);
+  };
 
-	const handleMediaUpload= (image) => {
-		console.log(image)
-	}
+  const handleMediaUpload = (media) => {
+    setGallery(media);
+  };
+
+  const submitVenue = () => {
+   hideModal()
+
+    let formData = new FormData();
+
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('address', address);
+    formData.append('price', price);
+    formData.append('capacity', capacity);
+    formData.append('thumbnail', thumbnail[0]);
+    formData.append('gallery-1', gallery[0]);
+		formData.append('gallery-2', gallery[1]);
+
+    axios
+      .post('http://localhost:5000/api/venue', formData)
+      .then((res) => {
+        alert("Successfully added")
+      })
+      .catch((err) => alert("Error"));
+  };
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -87,6 +117,7 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
                       type="text"
                       autoComplete="title"
                       className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                      onChange={(e) => setTitle(e.target.value)}
                     />
                   </div>
                 </div>
@@ -105,6 +136,7 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
                       rows={3}
                       className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"
                       defaultValue={''}
+                      onChange={(e) => setDescription(e.target.value)}
                     />
                   </div>
                   <p className="mt-2 text-sm text-gray-500">
@@ -125,6 +157,7 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
                       rows={3}
                       className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"
                       defaultValue={''}
+                      onChange={(e) => setAddress(e.target.value)}
                     />
                   </div>
                   <p className="mt-2 text-sm text-gray-500">
@@ -145,6 +178,7 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
                       type="text"
                       autoComplete="price"
                       className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                      onChange={(e) => setPrice(e.target.value)}
                     />
                   </div>
                 </div>
@@ -162,6 +196,7 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
                       type="number"
                       autoComplete="capacity"
                       className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                      onChange={(e) => setCapacity(e.target.value)}
                     />
                   </div>
                 </div>
@@ -172,7 +207,10 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
                   >
                     Thumbnail
                   </label>
-									<MediaUpload handleMediaUpload={handleThumbnailUpload} mediaCount={1} />
+                  <MediaUpload
+                    handleMediaUpload={handleThumbnailUpload}
+                    mediaCount={1}
+                  />
                 </div>
 
                 <div className="sm:col-span-6">
@@ -182,14 +220,17 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
                   >
                     Galley
                   </label>
-                  <MediaUpload handleMediaUpload={handleMediaUpload} mediaCount={2} />
+                  <MediaUpload
+                    handleMediaUpload={handleMediaUpload}
+                    mediaCount={2}
+                  />
                 </div>
               </form>
               <div className="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
                 <button
                   type="button"
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:col-start-2 sm:text-sm"
-                  onClick={() => hideModal()}
+                  onClick={() => submitVenue()}
                 >
                   Add Venue
                 </button>
