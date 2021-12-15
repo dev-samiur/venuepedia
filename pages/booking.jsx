@@ -1,5 +1,5 @@
 import { React } from 'react';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import { TrashIcon } from '@heroicons/react/solid';
 import Paypal from '../components/Paypal'
 
@@ -7,7 +7,7 @@ const product = {
   id: 1,
   title: 'The Way',
   href: '#',
-  price: '320000 BDT',
+  price: '320000',
   imageSrc: 'https://www.thewaydhaka.com/image/gallery/3.jpg',
   imageAlt: "Front of men's Basic Tee in black.",
   capacity: 1000,
@@ -15,10 +15,8 @@ const product = {
 };
 
 const Checkout = () => {
-  const confirmOrder = (e) => {
-    e.preventDefault();
-    Router.push('/signin');
-  };
+	const router = useRouter();
+  const { venueId, venueTitle, price } = router.query;
 
   return (
     <div className="bg-gray-50 h-screen">
@@ -93,7 +91,7 @@ const Checkout = () => {
               </dl>
 
               <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
-								<Paypal venue="sena kunja" user="sam" date="12 Nov" />
+								<Paypal venueId={venueId} venueTitle={venueTitle} price={price} user="sam" date="12 Nov" />
               </div>
             </div>
           </div>

@@ -18,6 +18,8 @@ const Navbar = () => {
   const handleSignout = () => {
     if (localStorage) {
       localStorage.removeItem('user');
+      localStorage.removeItem('userId');
+      localStorage.removeItem('email');
       Router.push('/signin');
     }
   };
@@ -37,11 +39,10 @@ const Navbar = () => {
             </a>
             <div className="hidden ml-10 space-x-8 lg:block">
               {navigation.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                >
-                  <span className="text-base font-medium text-white hover:text-indigo-50 cursor-pointer">{link.name}</span>
+                <Link key={link.name} href={link.href}>
+                  <span className="text-base font-medium text-white hover:text-indigo-50 cursor-pointer">
+                    {link.name}
+                  </span>
                 </Link>
               ))}
             </div>
@@ -53,12 +54,10 @@ const Navbar = () => {
                   Sign in
                 </span>
               </Link>
-              <Link
-                href="/signup"
-              >
+              <Link href="/signup">
                 <span className="cursor-pointer inline-block bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50">
-									Sign up
-								</span>
+                  Sign up
+                </span>
               </Link>
             </div>
           ) : (

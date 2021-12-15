@@ -23,7 +23,6 @@ const Product = () => {
       })
         .then((res) => {
           if (res.data.success) setProduct(res.data.success);
-          console.log(res.data);
         })
         .catch((err) => console.log(err.message));
     }
@@ -115,7 +114,7 @@ const Product = () => {
             </div>
             <div className="mt-8 lg:col-span-5">
               <form>
-                <Link href="/booking">
+                <Link href={{ pathname: '/booking', query: { venueId: id, venueTitle: product.title, price: product.price } }}>
                   <button
                     type="button"
                     className="mt-8 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"

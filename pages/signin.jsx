@@ -17,7 +17,9 @@ const SignIn = () => {
       .post('http://localhost:5000/api/auth/login', { email, password })
       .then((res) => {
         if (res.data.success) {
-          localStorage.setItem('user', res.data.success);
+          localStorage.setItem('user', res.data.success.token);
+					localStorage.setItem('userId', res.data.success.userId);
+					localStorage.setItem('email', res.data.success.email);
           Router.push('/dashboard');
         } else {
           alert('Error');
