@@ -61,13 +61,21 @@ const Navbar = () => {
               </Link>
             </div>
           ) : (
-            <a
-              href="#"
-              className="inline-block bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"
-              onClick={handleSignout}
-            >
-              Sign out
-            </a>
+            <div>
+              <Link href="/dashboard">
+                <span className="inline-block cursor-pointer bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50">
+                  Dashboard
+                </span>
+              </Link>
+              <Link href="#">
+                <span
+                  className="inline-block cursor-pointer ml-5 bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"
+                  onClick={handleSignout}
+                >
+                  Sign out
+                </span>
+              </Link>
+            </div>
           )}
         </div>
         <div className="py-4 flex flex-wrap justify-center space-x-6 lg:hidden">
