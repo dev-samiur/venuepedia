@@ -29,9 +29,9 @@ export default function Paypal({ venueId, venueTitle, price, date }) {
         },
         onApprove: async (data, actions) => {
           const order = await actions.order.capture();
-          // setPaidFor(true);
-          // saveTransaction();
-          // bookVenue();
+          saveTransaction();
+          bookVenue();
+					setPaidFor(true);
           console.log(order);
         },
         onError: (err) => {
@@ -65,10 +65,10 @@ export default function Paypal({ venueId, venueTitle, price, date }) {
   const bookVenue = () => {
     axios({
       method: 'POST',
-      url: 'http://localhost:5000/ap/booking',
+      url: 'http://localhost:5000/api/booking',
       data: {
-        venueId: venue._id,
-        userId: user._id,
+        venueId,
+        userId: localStorage.getItem('userId'),
         date,
       },
     })
@@ -90,7 +90,7 @@ export default function Paypal({ venueId, venueTitle, price, date }) {
         flexDirection="column"
       >
         <Typography variant="h5">
-          Congrats, you just booked {venue.title} at {date}
+          Congrats, you just booked {venueTitle} at {date}
         </Typography>
         <Button
           onClick={(e) => router.back()}
