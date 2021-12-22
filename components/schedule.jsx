@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 650,
   },
 	tableContainer: {
-		width: '60vw',
+width: 800,
 		[theme.breakpoints.down('sm')]: {
       width: '100vw'
     },
