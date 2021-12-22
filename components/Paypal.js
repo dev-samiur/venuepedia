@@ -50,7 +50,7 @@ export default function Paypal({ venueId, venueTitle, price, date }) {
         userId: localStorage.getItem('userId'),
 				paidBy: localStorage.getItem('email'),
         method: 'Paypal',
-        date: Date.now(),
+        date: date,
       },
     })
       .then((response) => {

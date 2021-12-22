@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StarIcon } from '@heroicons/react/solid';
 import Reviews from '../../components/Reviews';
 import { useRouter } from 'next/router';
@@ -9,24 +9,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const Product = () => {
+const Product = ({ product, slots }) => {
   const router = useRouter();
   const { id } = router.query;
-
-  const [product, setProduct] = useState('');
-
-  useEffect(() => {
-    if (id) {
-      axios({
-        url: 'http://localhost:5000/api/venue/' + id,
-        method: 'GET',
-      })
-        .then((res) => {
-          if (res.data.success) setProduct(res.data.success);
-        })
-        .catch((err) => console.log(err.message));
-    }
-  }, [id]);
+  const [selectedSlot, setSelectedSlot] = useState(
+    slots.length ? slots[0].date : []
+  );
 
   return (
     <div className="bg-white">
@@ -92,32 +80,58 @@ const Product = () => {
 
               <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8">
                 <img
-                  key={product._id}
                   src={`/venues/${product.thumbnail}`}
                   alt="thumbnail"
                   className={'rounded-lg'}
-									style={{maxHeight: 300}}
+                  style={{ maxHeight: 300 }}
                 />
                 <img
-                  key={product._id}
                   src={`/venues/${product.gallery_1}`}
                   alt="thumbnail"
                   className={'rounded-lg'}
                 />
                 <img
-                  key={product._id}
                   src={`/venues/${product.gallery_2}`}
                   alt="thumbnail"
                   className={'rounded-lg'}
                 />
               </div>
             </div>
+            <div className="sm:col-span-4">
+              <label htmlFor="email" className="block text-lg font-medium">
+                Slot:
+              </label>
+              <div className="mt-2">
+                {slots.length ? (
+                  <select onChange={(e) => setSelectedSlot(e.target.value)}>
+                    {slots.map((slot) => (
+                      <option value={slot.date} key={slot.date}>
+                        {slot.date}
+                      </option>
+                    ))}
+                  </select>
+                ) : <span className="text-red-900">Sorry no available slots</span>}
+              </div>
+            </div>
             <div className="mt-8 lg:col-span-5">
               <form>
-                <Link href={{ pathname: '/booking', query: { venueId: id, venueTitle: product.title, price: product.price } }}>
+                <Link
+                  href={{
+                    pathname: '/booking',
+                    query: {
+                      venueId: id,
+                      venueTitle: product.title,
+                      price: product.price,
+                      capacity: product.capacity,
+                      thumbnail: product.thumbnail,
+                      slot: selectedSlot,
+                    },
+                  }}
+                >
                   <button
                     type="button"
                     className="mt-8 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+										disabled={slots.length ? false : true}
                   >
                     Book the venue
                   </button>
@@ -142,6 +156,18 @@ const Product = () => {
       <Reviews />
     </div>
   );
+};
+
+export const getServerSideProps = async ({ params }) => {
+  const resVenue = await axios.get(
+    'http://localhost:5000/api/venue/' + params.id
+  );
+  const resSlots = await axios.get(
+    'http://localhost:5000/api/slot/' + params.id
+  );
+  return {
+    props: { product: resVenue.data.success, slots: resSlots.data.success },
+  };
 };
 
 export default Product;

@@ -15,7 +15,7 @@ const Products = ({products}) => {
         <div className="-mx-px border-l border-gray-200 grid grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-4">
           {products.map((product) => (
             <div
-              key={product.id}
+              key={product._id}
               className="group relative p-4 border-r border-b border-gray-200 sm:p-6"
             >
               <div className="rounded-lg overflow-hidden bg-gray-200 aspect-w-1 aspect-h-1 group-hover:opacity-75" style={{height: 200}}>
@@ -27,7 +27,7 @@ const Products = ({products}) => {
               </div>
               <div className="pt-10 pb-4 text-center">
                 <h3 className="text-sm font-medium text-gray-900">
-                  <Link href={`product/${product._id}`}>{product.title}</Link>
+                  <Link href={`/product/${product._id}`}>{product.title}</Link>
                 </h3>
                 <div className="mt-3 flex flex-col items-center">
                   <div className="flex items-center">
