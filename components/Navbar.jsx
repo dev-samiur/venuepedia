@@ -4,9 +4,9 @@ import Link from 'next/link';
 
 const navigation = [
   { name: 'Home', href: '/' },
-  { name: 'About', href: '#' },
-  { name: 'Venues', href: '/' },
-  { name: 'Contact', href: '#' },
+  { name: 'About', href: '/#about' },
+  { name: 'Venues', href: '/#venues' },
+  { name: 'Contact', href: '/#contact' },
 ];
 
 const Navbar = () => {

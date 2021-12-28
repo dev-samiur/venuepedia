@@ -1,14 +1,14 @@
-import React from 'react'
-import Head from 'next/head'
-import Hero from '../components/Hero'
-import About from '../components/About'
-import Stats from '../components/Stats'
-import Products from '../components/Products'
-import CTA from '../components/CTA'
-import Contact from '../components/Contact'
-import axios from 'axios'
+import React from 'react';
+import Head from 'next/head';
+import Hero from '../components/Hero';
+import About from '../components/About';
+import Stats from '../components/Stats';
+import Products from '../components/Products';
+import CTA from '../components/CTA';
+import Contact from '../components/Contact';
+import axios from 'axios';
 
-export default function Home({products}) {
+export default function Home({ products }) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
@@ -18,14 +18,17 @@ export default function Home({products}) {
 
       <main className="flex flex-col items-center justify-center w-full flex-1 px-0 text-center">
         <Hero />
-				<About />
-				<Stats />
-				<Products products={products}/>
-				<CTA />
-				<Contact />
+        <div id="about"></div>
+        <About />
+        <Stats />
+        <div id="venues"></div>
+        <Products products={products} />
+        <CTA />
+        <div id="contact"></div>
+        <Contact />
       </main>
     </div>
-  )
+  );
 }
 
 export async function getStaticProps({ req, res }) {
