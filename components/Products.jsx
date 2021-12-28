@@ -6,11 +6,13 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const Products = ({products}) => {
+const Products = ({ products }) => {
   return (
     <div className="bg-white mt-20">
       <div className="max-w-7xl mx-auto overflow-hidden sm:px-6 lg:px-8">
-        <h2 className="sr-only">Products</h2>
+        <h2 className="mt-20 mb-20 text-3xl text-gray-900 font-extrabold tracking-tight sm:text-4xl">
+					Venues
+        </h2>
 
         <div className="-mx-px border-l border-gray-200 grid grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-4">
           {products.map((product) => (
@@ -18,7 +20,10 @@ const Products = ({products}) => {
               key={product._id}
               className="group relative p-4 border-r border-b border-gray-200 sm:p-6"
             >
-              <div className="rounded-lg overflow-hidden bg-gray-200 aspect-w-1 aspect-h-1 group-hover:opacity-75" style={{height: 200}}>
+              <div
+                className="rounded-lg overflow-hidden bg-gray-200 aspect-w-1 aspect-h-1 group-hover:opacity-75"
+                style={{ height: 200 }}
+              >
                 <img
                   src={`./venues/${product.thumbnail}`}
                   alt={product.imageAlt}

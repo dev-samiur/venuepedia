@@ -6,7 +6,6 @@ import Stats from '../components/Stats'
 import Products from '../components/Products'
 import CTA from '../components/CTA'
 import Contact from '../components/Contact'
-import Category from '../components/Category'
 import axios from 'axios'
 
 export default function Home({products}) {
@@ -21,7 +20,6 @@ export default function Home({products}) {
         <Hero />
 				<About />
 				<Stats />
-				<Category />
 				<Products products={products}/>
 				<CTA />
 				<Contact />
