@@ -4,12 +4,23 @@ import Reviews from '../../components/Reviews';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import Link from 'next/link';
+import Head from 'next/head';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
 const Product = ({ product, slots }) => {
+  const [canBook, setCanBook] = useState(false);
+
+  useEffect(() => {
+    if (
+      localStorage.getItem('user') &&
+      parseInt(localStorage.getItem('type')) === 1
+    )
+      setCanBook(true);
+  }, []);
+
   const router = useRouter();
   const { id } = router.query;
   const [selectedSlot, setSelectedSlot] = useState(
@@ -18,6 +29,9 @@ const Product = ({ product, slots }) => {
 
   return (
     <div className="bg-white">
+      <Head>
+        <title>Venue Q - Venue Details</title>
+      </Head>
       <div className="pt-6 pb-16 sm:pb-24">
         <nav
           aria-label="Breadcrumb"
@@ -110,42 +124,45 @@ const Product = ({ product, slots }) => {
                       </option>
                     ))}
                   </select>
-                ) : <span className="text-red-900">Sorry no available slots</span>}
+                ) : (
+                  <span className="text-red-900">Sorry no available slots</span>
+                )}
               </div>
             </div>
             <div className="mt-8 lg:col-span-5">
-              <form>
-                <Link
-                  href={{
-                    pathname: '/booking',
-                    query: {
-                      venueId: id,
-                      venueTitle: product.title,
-                      price: product.price,
-                      capacity: product.capacity,
-                      thumbnail: product.thumbnail,
-                      slot: selectedSlot,
-                    },
-                  }}
-                >
-                  <button
-                    type="button"
-                    className="mt-8 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-										disabled={slots.length ? false : true}
+              {canBook && (
+                <form>
+                  <Link
+                    href={{
+                      pathname: '/booking',
+                      query: {
+                        venueId: id,
+                        venueTitle: product.title,
+                        price: product.price,
+                        capacity: product.capacity,
+                        thumbnail: product.thumbnail,
+                        slot: selectedSlot,
+                      },
+                    }}
                   >
-                    Book the venue
-                  </button>
-                </Link>
-              </form>
+                    <button
+                      type="button"
+                      className="mt-8 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      disabled={slots.length ? false : true}
+                    >
+                      Book the venue
+                    </button>
+                  </Link>
+                </form>
+              )}
 
               {/* Product details */}
-              <div className="mt-10">
+              <div className={!canBook ? `-mt-20` : `mt-10`}>
                 <h2 className="text-sm font-medium text-gray-900">
                   Description
                 </h2>
-
                 <div
-                  className="mt-4 prose prose-sm text-gray-500"
+                  className="mt-4 prose prose-sm text-gray-500 overflow-hidden"
                   dangerouslySetInnerHTML={{ __html: product.description }}
                 />
               </div>

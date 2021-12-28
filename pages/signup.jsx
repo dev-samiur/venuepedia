@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 import Link from 'next/link';
 import API from '../utils/API';
+import Head from "next/head";
 
 const SignUp = () => {
   const [username, setUsername] = useState('');
@@ -33,6 +34,9 @@ const SignUp = () => {
   if (typeof window !== 'undefined' && !localStorage.getItem('user')) {
     return (
       <>
+        <Head>
+          <title>Venue Q - Signup</title>
+        </Head>
         <div className="min-h-full h-screen w-full flex">
           <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
             <div className="mx-auto w-full max-w-sm lg:w-96">

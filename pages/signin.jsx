@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 import axios from 'axios';
 import Link from 'next/link';
+import Head from "next/head";
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -19,6 +20,8 @@ const SignIn = () => {
         if (res.data.success) {
           localStorage.setItem('user', res.data.success.token);
           localStorage.setItem('userId', res.data.success.userId);
+          localStorage.setItem('username', res.data.success.username);
+          localStorage.setItem('type', res.data.success.type);
           localStorage.setItem('email', res.data.success.email);
           Router.push('/dashboard');
         } else {
@@ -32,6 +35,9 @@ const SignIn = () => {
     return (
       <>
         <div className="min-h-full h-screen w-full flex">
+          <Head>
+            <title>Venue Q - Signin</title>
+          </Head>
           <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
             <div className="mx-auto w-full max-w-sm lg:w-96">
               <div>

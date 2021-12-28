@@ -12,6 +12,7 @@ import Link from 'next/link';
 import Modal from '../components/Modal';
 import SlotForm from '../components/SlotForm';
 import Schedule from '../components/schedule';
+import Head from "next/head";
 
 const user = {
   name: 'The Way Dhaka',
@@ -55,11 +56,15 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (!localStorage.getItem('user')) Router.push('/signin');
+    console.log(localStorage.getItem('type'));
   }, []);
 
   if (typeof window !== 'undefined' && localStorage.getItem('user')) {
     return (
       <div>
+        <Head>
+          <title>Venue Q - Dashboard</title>
+        </Head>
         <Modal
           showAddVenueForm={showAddVenueForm}
           handleShowAddVenueForm={handleShowAddVenueForm}
@@ -367,5 +372,5 @@ const Dashboard = () => {
   } else return null;
 };
 
-Dashboard.displayName = 'Dashboard'
+Dashboard.displayName = 'Dashboard';
 export default Dashboard;

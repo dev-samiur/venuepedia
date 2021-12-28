@@ -15,8 +15,10 @@ const Navbar = () => {
   useEffect(() => {
     if (localStorage.getItem('user')) setIsLoggedIn(true);
   }, []);
+
   const handleSignout = () => {
     if (localStorage) {
+			setIsLoggedIn(false)
       localStorage.removeItem('user');
       localStorage.removeItem('userId');
       localStorage.removeItem('email');

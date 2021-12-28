@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import { TrashIcon } from '@heroicons/react/solid';
 import Paypal from '../components/Paypal';
+import Head from "next/head";
 
 const Checkout = () => {
   const router = useRouter();
@@ -9,6 +10,9 @@ const Checkout = () => {
 
   return (
     <div className="bg-gray-50 h-screen">
+			<Head>
+				<title>Venue Q - Booking</title>
+			</Head>
       <div className="max-w-2xl mx-auto pt-16 pb-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="sr-only">Checkout</h2>
         <form className="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
