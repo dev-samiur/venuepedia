@@ -44,12 +44,11 @@ const SlotForm = ({ showAddSlotForm, handleShowAddSlotForm }) => {
 
     formData.append('venueId', venue);
     formData.append('date', slot);
-    console.log(venue + ' ' + slot);
 
     axios
       .post('http://localhost:5000/api/slot', formData)
       .then((res) => {
-        console.log(res.data);
+        alert("Slot added successfully");
       })
       .catch((err) => console.log(err));
   };
@@ -128,6 +127,7 @@ const SlotForm = ({ showAddSlotForm, handleShowAddSlotForm }) => {
                       id="slot"
                       name="slot"
                       type="datetime-local"
+											min="2021-12-22" max="2021-12-31"
                       className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                       onChange={(e) => setSlot(e.target.value)}
                     />
