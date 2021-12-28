@@ -69,7 +69,7 @@ const Product = ({ product, slots }) => {
                       <StarIcon
                         key={rating}
                         className={classNames(
-                          product.rating > rating
+                          3.5 > rating
                             ? 'text-yellow-400'
                             : 'text-gray-200',
                           'h-5 w-5 flex-shrink-0'

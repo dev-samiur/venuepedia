@@ -12,7 +12,7 @@ import Link from 'next/link';
 import Modal from '../components/Modal';
 import SlotForm from '../components/SlotForm';
 import Schedule from '../components/schedule';
-import Head from "next/head";
+import Head from 'next/head';
 
 const user = {
   name: 'The Way Dhaka',
@@ -98,25 +98,25 @@ const Dashboard = () => {
                       <div className="hidden lg:block lg:ml-6 lg:space-x-4">
                         <div className="flex">
                           {navigation.map((item) => (
-                            <a
-                              key={item.name}
-                              href={item.href}
-                              className={classNames(
-                                item.current
-                                  ? 'bg-black bg-opacity-25'
-                                  : 'hover:bg-sky-800',
-                                'rounded-md py-2 px-3 text-sm font-medium text-white'
-                              )}
-                              onClick={
-                                item.name === 'Add Venue'
-                                  ? () => setShowAddVenueForm(true)
-                                  : item.name === 'Add Slot'
-                                  ? () => setShowAddSlotForm(true)
-                                  : null
-                              }
-                            >
-                              {item.name}
-                            </a>
+                            <Link key={item.name} href={item.href}>
+                              <span
+                                className={classNames(
+                                  item.current
+                                    ? 'bg-black bg-opacity-25'
+                                    : 'hover:bg-sky-800',
+                                  'rounded-md py-2 px-3 text-sm font-medium text-white cursor-pointer'
+                                )}
+                                onClick={
+                                  item.name === 'Add Venue'
+                                    ? () => setShowAddVenueForm(true)
+                                    : item.name === 'Add Slot'
+                                    ? () => setShowAddSlotForm(true)
+                                    : null
+                                }
+                              >
+                                {item.name}
+                              </span>
+                            </Link>
                           ))}
                         </div>
                       </div>
