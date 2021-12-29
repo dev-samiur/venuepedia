@@ -8,8 +8,6 @@ import CTA from '../components/CTA';
 import Contact from '../components/Contact';
 import API from '../utils/API';
 
-console.log = function () {};
-
 export default function Home({ products }) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">

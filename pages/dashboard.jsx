@@ -14,8 +14,6 @@ import { StarIcon } from '@heroicons/react/solid';
 import API from '../utils/API';
 import { useRouter } from 'next/router';
 
-console.log = function () {};
-
 const user = {
   name: 'The Way Dhaka',
   handle: 'theway',
@@ -37,7 +35,7 @@ const Venues = ({ products }) => {
       .then((res) => {
         if (res.data.success) {
           alert('Venue deleted successfully');
-          products= products.filter(product => product._id !== id)
+          products = products.filter((product) => product._id !== id);
         }
       })
       .catch((err) => console.log('Error'));
@@ -47,6 +45,7 @@ const Venues = ({ products }) => {
     <div className="flex flex-col sm:flex-row flex-wrap">
       {products.map((product) => (
         <div
+          key={product._id}
           style={{
             width: 300,
             display: 'flex',
@@ -491,7 +490,7 @@ const Dashboard = ({ products, bookings }) => {
         </main>
       </div>
     );
-  } else return null;
+  } else return <div></div>;
 };
 
 export async function getStaticProps({ req, res }) {

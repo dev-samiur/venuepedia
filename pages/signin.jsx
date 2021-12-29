@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
-import axios from 'axios';
+import API from '../utils/API';
 import Link from 'next/link';
-import Head from "next/head";
+import Head from 'next/head';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -14,8 +14,7 @@ const SignIn = () => {
 
   const handleSignIn = (e) => {
     e.preventDefault();
-    axios
-      .post('http://localhost:5000/api/auth/login', { email, password })
+    API.post('/auth/login', { email, password })
       .then((res) => {
         if (res.data.success) {
           localStorage.setItem('user', res.data.success.token);
@@ -125,7 +124,8 @@ const SignIn = () => {
         </div>
       </>
     );
-  } else return null;
+  }
+  return null;
 };
 
 export default SignIn;

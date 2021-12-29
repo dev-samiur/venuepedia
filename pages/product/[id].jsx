@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StarIcon } from '@heroicons/react/solid';
 import Reviews from '../../components/Reviews';
 import { useRouter } from 'next/router';
-import axios from 'axios';
+import API from '../../utils/API';
 import Link from 'next/link';
 import Head from 'next/head';
 
@@ -176,11 +176,11 @@ const Product = ({ product, slots }) => {
 };
 
 export const getServerSideProps = async ({ params }) => {
-  const resVenue = await axios.get(
-    'http://localhost:5000/api/venue/' + params.id
+  const resVenue = await API.get(
+    '/venue/' + params.id
   );
-  const resSlots = await axios.get(
-    'http://localhost:5000/api/slot/' + params.id
+  const resSlots = await API.get(
+    '/slot/' + params.id
   );
   return {
     props: { product: resVenue.data.success, slots: resSlots.data.success },

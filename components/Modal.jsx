@@ -2,9 +2,11 @@ import React, { useEffect } from 'react';
 import { Fragment, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import MediaUpload from './MediaUpload';
-import axios from 'axios';
+import API from '../utils/API';
+import { useRouter } from 'next/router';
 
 const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
+	const router = useRouter();
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -48,10 +50,11 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
     formData.append('gallery-1', gallery[0]);
     formData.append('gallery-2', gallery[1]);
 
-    axios
-      .post('http://localhost:5000/api/venue', formData)
+    API
+      .post('/venue', formData)
       .then((res) => {
         alert('Successfully added');
+				router.reload('/dashboard')
       })
       .catch((err) => alert('Error'));
   };

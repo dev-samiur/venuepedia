@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { useRouter } from 'next/router';
-import axios from 'axios'
+import API from '../utils/API'
 
 export default function Paypal({ venueId, venueTitle, price, date }) {
   const [paidFor, setPaidFor] = useState(false);
@@ -42,9 +42,9 @@ export default function Paypal({ venueId, venueTitle, price, date }) {
   }, [venueTitle, price]);
 
   const saveTransaction = () => {
-    axios({
+    API({
       method: 'POST',
-      url: 'http://localhost:5000/api/transaction',
+      url: '/transaction',
       data: {
         venueId: venueId,
         userId: localStorage.getItem('userId'),
@@ -63,9 +63,9 @@ export default function Paypal({ venueId, venueTitle, price, date }) {
   };
 
   const bookVenue = () => {
-    axios({
+    API({
       method: 'POST',
-      url: 'http://localhost:5000/api/booking',
+      url: '/booking',
       data: {
         venueId,
         userId: localStorage.getItem('userId'),

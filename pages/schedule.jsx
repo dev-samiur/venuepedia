@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import API from '../utils/API';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -22,9 +22,9 @@ export default function BasicTable() {
   const classes = useStyles();
 
   useEffect(() => {
-    axios({
+    API({
       method: 'GET',
-      url: 'http://localhost:5000/api/booking',
+      url: '/booking',
     })
       .then((response) => {
         if (response.data.success) setRows(response.data.success);
