@@ -12,22 +12,37 @@ const SignIn = () => {
     if (localStorage.getItem('user')) Router.push('/dashboard');
   }, []);
 
+  const validateEmail = (email) => {
+    const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/;
+    const isValid = regex.test(email);
+    return isValid;
+  };
+
   const handleSignIn = (e) => {
     e.preventDefault();
-    API.post('/auth/login', { email, password })
-      .then((res) => {
-        if (res.data.success) {
-          localStorage.setItem('user', res.data.success.token);
-          localStorage.setItem('userId', res.data.success.userId);
-          localStorage.setItem('username', res.data.success.username);
-          localStorage.setItem('type', res.data.success.type);
-          localStorage.setItem('email', res.data.success.email);
-          Router.push('/dashboard');
-        } else {
-          alert('Error');
-        }
-      })
-      .catch((err) => console.log(err));
+    const isValidEmail = validateEmail(email);
+
+    if (!isValidEmail) {
+      alert('Please enter a valid email and password');
+      return;
+    }
+
+    if (isValidEmail && password) {
+      API.post('/auth/login', { email, password })
+        .then((res) => {
+          if (res.data.success) {
+            localStorage.setItem('user', res.data.success.token);
+            localStorage.setItem('userId', res.data.success.userId);
+            localStorage.setItem('username', res.data.success.username);
+            localStorage.setItem('type', res.data.success.type);
+            localStorage.setItem('email', res.data.success.email);
+            Router.push('/dashboard');
+          } else {
+            alert('Error');
+          }
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   if (typeof window !== 'undefined' && !localStorage.getItem('user')) {

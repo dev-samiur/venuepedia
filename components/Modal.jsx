@@ -54,7 +54,7 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
       .post('/venue', formData)
       .then((res) => {
         alert('Successfully added');
-				router.reload('/dashboard')
+				router.reload(window.location.pathname)
       })
       .catch((err) => alert('Error'));
   };

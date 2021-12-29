@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 import Link from 'next/link';
 import API from '../utils/API';
-import Head from "next/head";
+import Head from 'next/head';
 
 const SignUp = () => {
   const [username, setUsername] = useState('');
@@ -14,10 +14,18 @@ const SignUp = () => {
     if (localStorage.getItem('user')) Router.push('/dashboard');
   }, []);
 
+  const validateEmail = (email) => {
+    const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/;
+    const isValid = regex.test(email);
+    return isValid;
+  };
+
   const handleSignUp = (e) => {
     e.preventDefault();
-    if (!username || !email || !password) {
-      alert('All fields are required');
+    const isValidEmail = validateEmail(email);
+    if (!username || !email || !password || !isValidEmail) {
+      alert('Enter valid fields');
+      return;
     } else {
       API.post('/auth/register', { username, email, password, type })
         .then((res) => {
