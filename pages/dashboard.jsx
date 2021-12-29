@@ -2,17 +2,19 @@ import React, { useEffect, useState, Fragment } from 'react';
 import Router from 'next/router';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { SearchIcon } from '@heroicons/react/solid';
-import {
-  BellIcon,
-  MenuIcon,
-  UserCircleIcon,
-  XIcon,
-} from '@heroicons/react/outline';
+import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import Modal from '../components/Modal';
 import SlotForm from '../components/SlotForm';
 import Schedule from '../components/schedule';
+import Transactions from '../components/Transactions';
 import Head from 'next/head';
+import { Tab } from '@headlessui/react';
+import { StarIcon } from '@heroicons/react/solid';
+import API from '../utils/API';
+import { useRouter } from 'next/router';
+
+console.log = function () {};
 
 const user = {
   name: 'The Way Dhaka',
@@ -20,24 +22,122 @@ const user = {
   email: 'theway@example.com',
   imageUrl: 'https://www.thewaydhaka.com/image/gallery/36.jpg',
 };
-const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Add Venue', href: '#', current: false },
-  { name: 'Add Slot', href: '#', current: false },
-  { name: 'Venues', href: '/', current: false },
-];
-const subNavigation = [
-  { name: 'Schedule', icon: UserCircleIcon, current: true },
-];
+
 const userNavigation = [{ name: 'Sign out' }];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const Dashboard = () => {
+const Venues = ({ products }) => {
+  const router = useRouter();
+
+  const handleDelete = (id) => {
+    API.delete('/venue/' + id)
+      .then((res) => {
+        if (res.data.success) {
+          alert('Venue deleted successfully');
+          products= products.filter(product => product._id !== id)
+        }
+      })
+      .catch((err) => console.log('Error'));
+  };
+
+  return (
+    <div className="flex flex-col sm:flex-row flex-wrap">
+      {products.map((product) => (
+        <div
+          style={{
+            width: 300,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            margin: 10,
+            border: '1px solid #ccc',
+            borderRadius: 10,
+          }}
+        >
+          <div style={{ height: 250 }}>
+            <img
+              src={`./venues/${product.thumbnail}`}
+              alt={product.imageAlt}
+              className="w-full h-full object-center object-cover"
+            />
+          </div>
+          <h3 className="text-sm font-medium text-gray-900 text-center mt-5">
+            <Link href={`/product/${product._id}`}>{product.title}</Link>
+          </h3>
+          <div className="flex items-center mt-5">
+            {[0, 1, 2, 3, 4].map((rating) => (
+              <StarIcon
+                key={rating}
+                className={classNames(
+                  3.5 > rating ? 'text-yellow-400' : 'text-gray-200',
+                  'flex-shrink-0 h-5 w-5'
+                )}
+                aria-hidden="true"
+              />
+            ))}
+          </div>
+          <div className="pb-5">
+            <p className="mt-5 text-base font-medium text-gray-900">
+              {product.price} BDT
+            </p>
+          </div>
+          {/* <div>
+            <button
+              className="ml-5 mb-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onClick={() => handleDelete(product._id)}
+            >
+              Delete
+            </button>
+          </div> */}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const Dashboard = ({ products, bookings }) => {
   const [showAddVenueForm, setShowAddVenueForm] = useState(false);
   const [showAddSlotForm, setShowAddSlotForm] = useState(false);
+  const [openTab, setOpenTab] = useState(1);
+  const [venues, setVenues] = useState([]);
+  const [transactions, setTransactions] = useState([]);
+  const [navigation, setNavigation] = useState([]);
+
+  useEffect(() => {
+    if (parseInt(localStorage.getItem('type')) === 2) {
+      setNavigation([
+        { name: 'Dashboard', href: '#', current: true },
+        { name: 'Add Venue', href: '#', current: false },
+        { name: 'Add Slot', href: '#', current: false },
+        { name: 'Venues', href: '/', current: false },
+      ]);
+    } else {
+      setOpenTab(2);
+      setNavigation([
+        { name: 'Dashboard', href: '#', current: true },
+        { name: 'Venues', href: '/', current: false },
+      ]);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (products) {
+      setVenues(
+        products.filter(
+          (product) => product.owner === localStorage.getItem('userId')
+        )
+      );
+    }
+  }, [products]);
+
+  useEffect(() => {
+    API.get('/transaction/' + localStorage.getItem('userId'))
+      .then((res) => setTransactions(res.data.success))
+      .catch((err) => console.log(err));
+  }, []);
 
   const handleSignout = () => {
     if (localStorage) {
@@ -56,7 +156,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (!localStorage.getItem('user')) Router.push('/signin');
-    console.log(localStorage.getItem('type'));
   }, []);
 
   if (typeof window !== 'undefined' && localStorage.getItem('user')) {
@@ -323,7 +422,9 @@ const Dashboard = () => {
               </div>
               <header className="relative py-10">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                  <h1 className="text-3xl font-bold text-white">Settings</h1>
+                  <h1 className="text-3xl font-bold text-white">
+                    VenueQ Dashboard
+                  </h1>
                 </div>
               </header>
             </>
@@ -331,39 +432,60 @@ const Dashboard = () => {
         </Disclosure>
 
         <main className="relative -mt-32">
-          <div className="max-w-screen-xl mx-auto pb-6 px-4 sm:px-6 lg:pb-16 lg:px-8">
-            <div className="bg-white rounded-lg shadow overflow-hidden">
-              <div className="divide-y divide-gray-200 lg:grid lg:grid-cols-12 lg:divide-y-0 lg:divide-x">
-                <aside className="py-6 lg:col-span-3">
-                  <nav className="space-y-1">
-                    {subNavigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? 'bg-teal-50 border-teal-500 text-teal-700 hover:bg-teal-50 hover:text-teal-700'
-                            : 'border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900',
-                          'group border-l-4 px-3 py-2 flex items-center text-sm font-medium'
-                        )}
-                        aria-current={item.current ? 'page' : undefined}
+          <div className="bg-white rounded-lg shadow overflow-hidden p-10 flex flex-col sm:flex-row">
+            <aside className="py-6 lg:col-span-3">
+              <nav className="space-y-1 ml-5">
+                <Tab.Group>
+                  <Tab.List className="flex flex-col items-start">
+                    {parseInt(localStorage.getItem('type')) === 2 && (
+                      <Tab
+                        className={
+                          'w-60 text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal ' +
+                          (openTab === 1
+                            ? 'text-white bg-indigo-600'
+                            : 'text-indigo-600 bg-white')
+                        }
                       >
-                        <item.icon
-                          className={classNames(
-                            item.current
-                              ? 'text-teal-500 group-hover:text-teal-500'
-                              : 'text-gray-400 group-hover:text-gray-500',
-                            'flex-shrink-0 -ml-1 mr-3 h-6 w-6'
-                          )}
-                          aria-hidden="true"
-                        />
-                        <span className="truncate">{item.name}</span>
-                      </a>
-                    ))}
-                  </nav>
-                </aside>
-                <Schedule />
-              </div>
+                        <span onClick={() => setOpenTab(1)}>Venues</span>
+                      </Tab>
+                    )}
+                    <Tab
+                      className={
+                        'mt-5 w-60 text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal ' +
+                        (openTab === 2
+                          ? 'text-white bg-indigo-600'
+                          : 'text-indigo-600 bg-white')
+                      }
+                    >
+                      <span onClick={() => setOpenTab(2)}>Schedule</span>
+                    </Tab>
+                    {parseInt(localStorage.getItem('type')) === 2 && (
+                      <Tab
+                        className={
+                          'mt-5 w-60 text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal ' +
+                          (openTab === 3
+                            ? 'text-white bg-indigo-600'
+                            : 'text-indigo-600 bg-white')
+                        }
+                        onClick={() => {
+                          setOpenTab(3);
+                        }}
+                      >
+                        <span onClick={() => setOpenTab(3)}>Transactions</span>
+                      </Tab>
+                    )}
+                  </Tab.List>
+                </Tab.Group>
+              </nav>
+            </aside>
+            <div className="sm:ml-20">
+              {openTab === 1 ? (
+                <Venues products={venues} />
+              ) : openTab === 2 ? (
+                <Schedule rows={bookings} />
+              ) : (
+                <Transactions rows={transactions} />
+              )}
             </div>
           </div>
         </main>
@@ -371,6 +493,25 @@ const Dashboard = () => {
     );
   } else return null;
 };
+
+export async function getStaticProps({ req, res }) {
+  const venues = await API({
+    url: '/venue',
+    method: 'GET',
+  });
+
+  const bookings = await API({
+    url: '/booking',
+    method: 'GET',
+  });
+
+  return {
+    props: {
+      products: venues.data.success,
+      bookings: bookings.data.success,
+    },
+  };
+}
 
 Dashboard.displayName = 'Dashboard';
 export default Dashboard;

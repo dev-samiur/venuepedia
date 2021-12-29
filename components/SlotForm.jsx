@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { Fragment, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import MediaUpload from './MediaUpload';
-import axios from 'axios';
+import API from '../utils/API';
 
 const SlotForm = ({ showAddSlotForm, handleShowAddSlotForm }) => {
   const [open, setOpen] = useState(false);
@@ -22,8 +21,8 @@ const SlotForm = ({ showAddSlotForm, handleShowAddSlotForm }) => {
   };
 
   useEffect(() => {
-    axios({
-      url: 'http://localhost:5000/api/venue',
+    API({
+      url: '/venue',
       method: 'GET',
     })
       .then((response) => {
@@ -45,10 +44,10 @@ const SlotForm = ({ showAddSlotForm, handleShowAddSlotForm }) => {
     formData.append('venueId', venue);
     formData.append('date', slot);
 
-    axios
-      .post('http://localhost:5000/api/slot', formData)
+    API.post('/slot', formData)
       .then((res) => {
-        alert("Slot added successfully");
+        if (res.data.success) alert('Slot added successfully');
+        else if (res.data.error) alert('Error');
       })
       .catch((err) => console.log(err));
   };
@@ -127,7 +126,8 @@ const SlotForm = ({ showAddSlotForm, handleShowAddSlotForm }) => {
                       id="slot"
                       name="slot"
                       type="datetime-local"
-											min="2021-12-22" max="2021-12-31"
+                      min="2021-12-22"
+                      max="2021-12-31"
                       className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                       onChange={(e) => setSlot(e.target.value)}
                     />

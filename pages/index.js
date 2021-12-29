@@ -6,7 +6,9 @@ import Stats from '../components/Stats';
 import Products from '../components/Products';
 import CTA from '../components/CTA';
 import Contact from '../components/Contact';
-import axios from 'axios';
+import API from '../utils/API';
+
+console.log = function () {};
 
 export default function Home({ products }) {
   return (
@@ -32,8 +34,8 @@ export default function Home({ products }) {
 }
 
 export async function getStaticProps({ req, res }) {
-  const result = await axios({
-    url: 'http://localhost:5000/api/venue',
+  const result = await API({
+    url: '/venue',
     method: 'GET',
   });
 

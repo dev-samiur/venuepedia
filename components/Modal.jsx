@@ -34,7 +34,7 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
   };
 
   const submitVenue = () => {
-   hideModal()
+    hideModal();
 
     let formData = new FormData();
 
@@ -43,16 +43,17 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
     formData.append('address', address);
     formData.append('price', price);
     formData.append('capacity', capacity);
+    formData.append('owner', localStorage.getItem('userId'));
     formData.append('thumbnail', thumbnail[0]);
     formData.append('gallery-1', gallery[0]);
-		formData.append('gallery-2', gallery[1]);
+    formData.append('gallery-2', gallery[1]);
 
     axios
       .post('http://localhost:5000/api/venue', formData)
       .then((res) => {
-        alert("Successfully added")
+        alert('Successfully added');
       })
-      .catch((err) => alert("Error"));
+      .catch((err) => alert('Error'));
   };
 
   return (

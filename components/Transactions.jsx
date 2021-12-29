@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BasicTable({rows}) {
+export default function BasicTable({ rows }) {
   const [searched, setSearched] = useState('');
   const classes = useStyles();
 
@@ -49,18 +49,14 @@ export default function BasicTable({rows}) {
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Venue</TableCell>
-                <TableCell align="center">Booked By</TableCell>
+                <TableCell>Method</TableCell>
                 <TableCell align="center">Date</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {rows.map((row) => (
                 <TableRow key={row.date}>
-                  <TableCell component="th" scope="row">
-                    {row.venue}
-                  </TableCell>
-                  <TableCell align="center">{row.user}</TableCell>
+                  <TableCell align="center">{row.method}</TableCell>
                   <TableCell align="center">{row.date}</TableCell>
                 </TableRow>
               ))}
