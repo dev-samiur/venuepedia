@@ -6,7 +6,7 @@ import API from '../utils/API';
 import { useRouter } from 'next/router';
 
 const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
-	const router = useRouter();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -36,7 +36,21 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
   };
 
   const submitVenue = () => {
+    if (
+      !title ||
+      !description ||
+      !address ||
+      !price ||
+      !capacity ||
+      !thumbnail ||
+      !gallery[0] ||
+      !gallery[1]
+    ) {
+      alert('Enter valid fields');
+      return;
+    }
     hideModal();
+		console.log('here')
 
     let formData = new FormData();
 
@@ -50,11 +64,10 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
     formData.append('gallery-1', gallery[0]);
     formData.append('gallery-2', gallery[1]);
 
-    API
-      .post('/venue', formData)
+    API.post('/venue', formData)
       .then((res) => {
         alert('Successfully added');
-				router.reload(window.location.pathname)
+        router.reload(window.location.pathname);
       })
       .catch((err) => alert('Error'));
   };
